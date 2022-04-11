@@ -1,4 +1,3 @@
-// BUILD YOUR SERVER HERE
 const express = require("express");
 const User = require("./users/model");
 
@@ -6,7 +5,6 @@ const server = express();
 
 server.use(express.json());
 
-// POST
 server.post("/api/users", (req, res) => {
   let user = req.body;
   if (!user.name || !user.bio) {
@@ -26,7 +24,6 @@ server.post("/api/users", (req, res) => {
   }
 });
 
-// GET
 server.get("/api/users", (req, res) => {
   User.find().then((user) => {
     if (!user) {
@@ -39,10 +36,9 @@ server.get("/api/users", (req, res) => {
   });
 });
 
-// GET WITH ID
 server.get("/api/users/:id", (req, res) => {
   User.findById(req.params.id)
-    .then(user => {
+    .then((user) => {
       if (!user) {
         res
           .status(404)
@@ -58,7 +54,6 @@ server.get("/api/users/:id", (req, res) => {
     );
 });
 
-// DELETE
 server.delete("/api/users/:id", (req, res) => {
   User.remove(req.params.id).then((user) => {
     if (!user) {
@@ -71,7 +66,6 @@ server.delete("/api/users/:id", (req, res) => {
   });
 });
 
-// PUT
 server.put("/api/users/:id", (req, res) => {
   let user = req.body;
 
